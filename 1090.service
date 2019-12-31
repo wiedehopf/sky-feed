@@ -1,0 +1,21 @@
+
+[Unit]
+Wants=network.target
+After=network.target
+
+[Service]
+EnvironmentFile=/usr/local/share/sky-feed/default
+EnvironmentFile=/etc/default/sky-feed
+SyslogIdentifier=sky-feed
+RuntimeDirectory=sky-feed
+User=sky-feed
+RuntimeDirectoryMode=0755
+ExecStart=/usr/local/share/sky-feed/readsb \
+ $NET_OPTIONS $SOURCE $TARGET --quiet
+Type=simple
+Restart=on-failure
+RestartSec=30
+Nice=5
+
+[Install]
+WantedBy=default.target
