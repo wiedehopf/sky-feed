@@ -47,6 +47,8 @@ if ! [ -f $ipath/readsb ]; then
     apt install -y libncurses5-dev
 	make
 	cp readsb $ipath
+    cd /tmp
+	rm -rf /tmp/readsb &>/dev/null || true
 fi
 
 cd "$current_path"
